@@ -32,9 +32,9 @@ function generateIntegrationPlan() {
 
   
  
-  let clientSectionSheet = generateSheets(activeSpreadSheet,targetSheets.clientSection);
+  let clientSectionSheet = generateSheets(activeSpreadSheet,targetSheets.clientSection),parentRow = 3;
 
-  generateFacebookAdnetwork(clientSectionSheet);
+  generateFacebookAdnetwork(clientSectionSheet,parentRow);
 
   //clientSectionSheet.
   
@@ -208,13 +208,13 @@ function generateSheets(currentSpreadSheet,sheetName){
   return currentSpreadSheet.insertSheet(sheetName);
 }
 
-function generateFacebookAdnetwork(currentSheet){
-  //currentSheet.getRange(4,4).setValue(fbData.row1[0]);
+function generateFacebookAdnetwork(currentSheet,parentRow){
+  currentSheet.getRange((parentRow - 1),1).setValue("Facebook");
 
-  let parentRow = 3;
-  for(let irow=0; i < fbData.length ; irow++){
+  for(let irow=0; irow < fbData.length ; irow++){
     for(let icol=0; icol < fbData[irow].length; icol++){
-      currentSheet.getRange((parentRow + irow),icol).setValue(fbData[irow][icol]);
+      console.log(parentRow+irow);
+      currentSheet.getRange((parentRow + irow),(icol+1)).setValue(fbData[irow][icol]);
     }
   }
 }
