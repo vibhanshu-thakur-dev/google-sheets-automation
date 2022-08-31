@@ -218,3 +218,12 @@ function generateFacebookAdnetwork(currentSheet,parentRow){
     }
   }
 }
+
+
+function insertCheckbox(){
+  var ss=SpreadsheetApp.getActiveSpreadsheet();
+  var sh=ss.getActiveSheet();
+  var activeRange=sh.getActiveRange();
+  var checkbox=SpreadsheetApp.newDataValidation().requireCheckbox().setAllowInvalid(false).build();
+  activeRange.setDataValidation(checkbox).setValue(true);
+}
